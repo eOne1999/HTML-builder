@@ -10,6 +10,13 @@ function copyDir() {
         console.log('Create folder');
     });
 
+    fs.readdir(copyPath, (err, files) => {
+        if (err) throw err;
+        files.forEach(file => {
+            fs.unlink(path.join(copyPath, file), () => {});
+        });
+    });
+
     fs.readdir(filesPath, (err, files) => {
         files.forEach(file => {
             if (err) throw err;
